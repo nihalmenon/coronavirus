@@ -89,6 +89,7 @@
 
 		$('#search').keypress(function(e){
 			if (e.which == 13) {
+				$(".ui-menu-item").hide()
 				$('#tableContainer').show();
 				search_table($('#search').val());
 			}
