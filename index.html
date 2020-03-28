@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>COVID-19</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style type="text/css">
+		.masthead {
+			height: 100vh;
+			min-height: 500px;
+			background-image: url('img/map_virus.jpg');
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+			color: white;
+		}
+
+		a {
+			color: white;
+		}
+
+		a:hover {
+			color: white;
+		}
+	</style>
+</head>
+<body>
+	<!-- <div class="btn-group" role="group" aria-label="Basic example">
+		<button type="button" class="btn btn-primary btn-lg btn-block">By State</button>
+		<button type="button" class="btn btn-primary btn-lg btn-block">By County</button>
+	</div> -->
+
+	<!-- Navigation -->
+	<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
+	<div class="container">
+	<a class="navbar-brand" href="#">Start Bootstrap</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarResponsive">
+	<ul class="navbar-nav ml-auto">
+		<li class="nav-item active">
+			<a class="nav-link" href="#">Home
+				<span class="sr-only">(current)</span>
+			</a>
+	    </li>
+		<li class="nav-item">
+			<a class="nav-link" href="#">About</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="#">Services</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="#">Contact</a>
+		</li>
+	  </ul>
+	</div>
+	</div>
+	</nav>
+ -->
+	<!-- Full Page Image Header with Vertically Centered Content -->
+	<header class="masthead">
+	<div class="container h-100">
+		<div class="row h-100 align-items-center">
+			<div class="col-12 text-center">
+				<h1 class="display-1">COVID-19 Statistics by Location (USA)</h1>
+				<p class="lead"><a href="https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html" class="lead">https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html</a></p>
+				<button type="button" id="countyBtn" class="btn btn-outline-light btn-lg">County</button>
+				<button type="button" id="stateBtn" class="btn btn-outline-light btn-lg">State</button>
+			</div>
+		</div>
+	</div>
+	</header>
+
+	<!-- Page Content -->
+	<!-- <section class="py-5">
+	<div class="container">
+	<h2 class="font-weight-light">Page Content</h2>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus ab nulla dolorum autem nisi officiis blanditiis voluptatem hic, assumenda aspernatur facere ipsam nemo ratione cumque magnam enim fugiat reprehenderit expedita.</p>
+	</div> -->
+</section>
+<script type="text/javascript">
+	document.getElementById("countyBtn").onclick = function () {
+		location.href = "county.html";
+	};
+	document.getElementById("stateBtn").onclick = function () {
+		location.href = "state.html";
+	};
+</script>
+</body>
+</html>

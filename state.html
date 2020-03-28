@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>COVID-19 by State</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="jquery-ui/jquery-ui.js"></script>
+	<link rel="stylesheet" type="text/css" href="jquery-ui/jquery-ui.css">
+
+	<style type="text/css">
+		h1 {
+			text-align: center;
+		}
+
+		#inputContainer {
+			text-align: center;
+			margin: 20px;
+		}
+
+		.form-control {
+			width: 40%;
+		}
+
+		input button {
+			display: inline-block;
+		}
+
+		input {
+			margin: 15px auto;
+
+		}
+
+		#tableContainer {
+			width: 70%;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<h1 class="display-1">COVID-19 Cases by State</h1>
+	<div id="inputContainer" class="form-group">
+			<input type="text" name="state" id="search" class="form-control" placeholder="State...">
+			<p id="emailHelp" class="form-text text-muted">Data from The New York Times, based on reports from state and local health agencies.</p>
+			<button id="submit" class="btn btn-primary">Submit</button>
+	</div>
+	<div id="tableContainer">
+		
+	</div>
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#search").focus();
+		$.ajax({
+			url: 'https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv',
+			dataType: 'text',
+			success:function(data){
+				var stateData = data.split(/\r?\n|\r/);
+				var table_data = '<table id="table" class="table table-bordered table-hover">';
+				for(var count = 0; count < stateData.length; count++){
+					var cell_data = stateData[count].split(",");
+					table_data += '<tr>';
+					for(var cell_count = 0; cell_count < cell_data.length; cell_count++){
+						if(count === 0){
+							table_data += '<th>' + cell_data[cell_count] + '</th>';
+						}else{
+							table_data += '<td>' + cell_data[cell_count] + '</td>';
+						}
+					}
+					table_data += '</tr>'
+				}
+				table_data += '</table>';
+				$('#tableContainer').html(table_data);
+				$('#tableContainer').hide();
+			}
+		});
+
+		var states = ['Alabama','Alaska','American Samoa','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','District of Columbia','Florida','Georgia','Guam','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Marshall Islands','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Northern Mariana Islands','Ohio','Oklahoma','Oregon','Palau','Pennsylvania','Puerto Rico','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virgin Island','Virginia','Washington','West Virginia','Wisconsin','Wyoming'];
+		$('#search').autocomplete({
+			source: states,
+			delay: 300
+		});
+
+		$('#submit').click(function(){
+			$('#tableContainer').show();
+			search_table($('#search').val());  
+		});
+
+		$('#search').keypress(function(e){
+			if (e.which == 13) {
+				$('#tableContainer').show();
+				search_table($('#search').val());
+			}
+		});
+
+		function search_table(value){
+			$('#table tbody tr').each(function(){  
+				var found = 'false';  
+				$(this).each(function(){
+					if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0){  
+						found = 'true';
+					}else if($(this).text().toLowerCase().indexOf("fips") >= 0 && $(this).text().toLowerCase().indexOf("date") >= 0 && $(this).text().toLowerCase().indexOf("state") >= 0){
+						found = 'true';
+					}
+				});
+
+				if(found == 'true'){  
+					$(this).show();  
+				}else{  
+					$(this).hide();  
+				}
+
+				});
+
+		}
+	});
+
+
+
+</script>
+</body>
+</html>
